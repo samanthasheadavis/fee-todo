@@ -362,6 +362,44 @@ textarea {
 
 body {
   background-color: #f5f5f5;
+  font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+  margin-top: 50px;
+  margin-left: 50px; }
+
+article {
+  border: 1px solid #eee;
+  width: 300px;
+  padding: 10px; }
+  article:hover {
+    background: white; }
+
+.check {
+  display: inline;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f5f5f5; }
+  .check:checked {
+    background: red; }
+
+.text {
+  display: inline;
+  color: #444;
+  margin-left: 15px;
   font-family: "Roboto Condensed", Helvetica, Arial, sans-serif; }
+
+.delete {
+  display: inline;
+  color: #af5c5f;
+  margin-left: 200px;
+  display: none; }
+
+.btnCheck {
+  background: #5bc0ad; }
+
+.checked {
+  text-decoration: line-through;
+  color: #444; }
 
 /*# sourceMappingURL=main.css.map */
