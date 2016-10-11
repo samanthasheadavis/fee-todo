@@ -392,7 +392,7 @@ article {
 .delete {
   display: inline;
   color: #af5c5f;
-  margin-left: 200px;
+  margin-left: 150px;
   display: none; }
 
 .btnCheck {
@@ -401,5 +401,8 @@ article {
 .checked {
   text-decoration: line-through;
   color: #444; }
+
+.saveBtn {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */

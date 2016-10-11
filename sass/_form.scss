@@ -33,7 +33,7 @@ article {
 .delete {
     display: inline;
     color: $deleteColor;
-    margin-left: 200px;
+    margin-left: 150px;
     display: none;
 }
 
@@ -44,4 +44,9 @@ article {
 .checked {
    text-decoration: line-through;
    color: $lightTextColor;
+}
+
+
+.saveBtn {
+  display: none;
 }
