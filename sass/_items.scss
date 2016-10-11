@@ -1,0 +1,67 @@
+article {
+@extend .todoForm;
+overflow: hidden;
+
+
+    &:hover {
+        background: white;
+    }
+
+    &:hover > .delete {
+        display: inline;
+    }
+}
+
+.clickborder {
+  border: 1px solid rgba(black, .3);
+  box-shadow: inset 0px 0px 10px 2px rgba(0,0,0,0.3);
+}
+
+.checkbox {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $backgroundColor;
+    border: 1px solid rgba(black, .3);
+    float: left;
+
+
+    span {
+        display: none;
+        margin-left: -3px;
+    }
+}
+
+.text {
+    display: inline;
+    color: $lightTextColor;
+    margin-left: 15px;
+    font-family: $primaryFont;
+}
+
+.delete {
+    color: $deleteColor;
+    display: none;
+    float: right;
+}
+
+// class for button that has been check off
+.btnCheck {
+    span {
+        color: $completedColor;
+        display: inline;
+    }
+}
+//class for article that has been checked off
+
+.checked {
+    text-decoration: line-through;
+    color: rgba(black, .3);
+}
+
+.newInput {
+    display: block;
+    float: left;
+    margin-left: 15px;
+}
