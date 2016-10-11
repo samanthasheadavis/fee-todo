@@ -16,10 +16,6 @@ article {
     border-radius: 50%;
     background: $backgroundColor;
 
-    &:checked {
-      background: red;
-    }
-
 }
 
 .text {
@@ -33,7 +29,7 @@ article {
 .delete {
     display: inline;
     color: $deleteColor;
-    margin-left: 150px;
+    margin-left: 200px;
     display: none;
 }
 
@@ -45,8 +41,6 @@ article {
    text-decoration: line-through;
    color: $lightTextColor;
 }
-
-
-.saveBtn {
-  display: none;
+.newInput {
+  display: inline;
 }

@@ -10,10 +10,10 @@ $(document).ready(function() {
                 event.preventDefault();
                 var todoString = $('.new-todo').val();
                 $('.new-todo').val('');
+
                 todo.createTodo(todoString);
                 todo.addRemain(todoString);
                 console.log(todo.todoArray);
-
             });
         },
 
@@ -23,67 +23,58 @@ $(document).ready(function() {
             var btn = $('<button>').attr('class', 'check').appendTo(todoItem);
             var text = $('<p>').attr('class', 'text').html(todoString).appendTo(todoItem);
             var deleteTodo = $('<button>').attr('class', 'delete').html('X').appendTo(todoItem);
-            var saveButton = $("<button>").attr('class', 'saveBtn').appendTo(todoItem).html("Save");
-            
+            todo.editTodo(todoString);
         },
 
         // increment "items left" up or down
-        handleRemain: function() {
-          var remainingTodo = todo.todoArray.length;
-          console.log(remainingTodo);
-          $('.incomplete-items').html(remainingTodo);
-
-        },
 
         addRemain: function(string) {
-          var remainingTodo = todo.todoArray.length;
-          todo.todoArray.push(string);
-          console.log(remainingTodo);
+            console.log('array length is: ' + todo.todoArray.length + 1);
+            var remainingTodo = todo.todoArray.length + 1;
+            todo.todoArray.push(string);
+            console.log("remainingTodo: " + remainingTodo);
             $('.incomplete-items').html(remainingTodo);
-
         },
 
         subtractRemain: function() {
-            var remainingTodo = todo.todoArray.length;
-            todo.todoArray.splice(todo.todoArray.length-1, 1);
+            var remainingTodo = todo.todoArray.length - 1;
+            todo.todoArray.splice(todo.todoArray.length - 1, 1);
             console.log(remainingTodo);
             console.log(todo.todoArray);
             $('.incomplete-items').html(remainingTodo);
-
         },
-
 
         editTodo: function(todoString) {
             //trigger function if todo clicked on, dynamically create editableTodo and populate with todoString.
-          var textbox = $('.text');
-          var editString = todoString;
-          var editableTodo = $("<input>").attr('class', 'newInput').val(editString);
+            var textbox = $('.text');
+            var editString = todoString;
+            var editableTodo = $("<input>").attr('class', 'newInput').val(editString);
 
             $('.text').click(function(event) {
 
                 $(this).replaceWith(editableTodo); //"this" refers to .text class item clicked on.
-                $('.saveBtn').click(function(event) {
-                    editString = $(this).siblings('.newInput').val();
-                    console.log($(this).siblings('.newInput').val());
-                    todo.createTodo(editString);
-                    $(this).parents('article').remove();
-                });
             });
+
+            $(editableTodo).keyup(function(e) {
+              var value = this.value;
+              if (e.keyCode == 13) {
+                  console.log(value);
+                  todo.createTodo(value);
+                  $(this).parents('article').remove();
+              }
+            });
+
         },
         // use event delegation to toggle delete button on hover and assign click event to delete button
         deleteTodo: function() {
             $('main').on('mouseover', 'article', function(event) {
                 $(this).children('.delete').show();
-                $(this).children('.saveBtn').show();
-
-
             });
+
             $('main').on('click', '.delete', function() {
                 $(this).parents('article').remove();
                 todo.subtractRemain();
-
             });
-
         },
 
         //checkOff adds the 'checked' class to the article whose check button is being clicked
@@ -97,14 +88,14 @@ $(document).ready(function() {
     };
 
     todo.getTodo();
-    todo.handleRemain(); // need to trigger in order to count 0 items in the beginning.
     todo.deleteTodo();
     todo.checkOff();
 
 });
 
-// left to do:
-// fix multiple todos appearing when one is saved bug (don't call editTodo function inside createTodo function )
+// BUGS:
+// make delete button stay in line
+// get x button to hover correctly
 // get clear completed button to delete all completed items
 
 
