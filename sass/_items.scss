@@ -1,7 +1,8 @@
 article {
-@extend .todoForm;
-overflow: hidden;
-
+    border: 1px solid $innerBorderColor;
+    padding: 10px;
+    background: white;
+    overflow: hidden;
 
     &:hover {
         background: white;
@@ -13,8 +14,8 @@ overflow: hidden;
 }
 
 .clickborder {
-  border: 1px solid rgba(black, .3);
-  box-shadow: inset 0px 0px 10px 2px rgba(0,0,0,0.3);
+    border: 1px solid rgba(black, .3);
+    box-shadow: inset 0 0 10px 2px rgba(0,0,0,0.3);
 }
 
 .checkbox {
@@ -25,7 +26,6 @@ overflow: hidden;
     background: $backgroundColor;
     border: 1px solid rgba(black, .3);
     float: left;
-
 
     span {
         display: none;
@@ -45,7 +45,6 @@ overflow: hidden;
     display: none;
     float: right;
 }
-
 // class for button that has been check off
 .btnCheck {
     span {

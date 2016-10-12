@@ -18,7 +18,7 @@ $(document).ready(function() {
 
         // build todo (check button, text, delete button)
         createTodo: function(todoString) {
-            var todoItem = $('<article>').prependTo('.items');
+            var todoItem = $('<article>').attr('class', 'active').prependTo('.items');
             var btn = $('<button>').attr('class', 'checkbox').html("<span>&#10003</span>").appendTo(todoItem);
             var text = $('<p>').attr('class', 'text').html(todoString).appendTo(todoItem);
             var deleteTodo = $('<button>').attr('class', 'delete').html('X').appendTo(todoItem);
@@ -39,6 +39,9 @@ $(document).ready(function() {
             var remainingTodo = todo.todoArray.length - 1;
             todo.todoArray.splice(todo.todoArray.length - 1, 1);
             $('.incomplete-items').html(remainingTodo);
+            if (remainingTodo < 0) {
+              remainingTodo = 0;
+            }
         },
 
         editTodo: function(todoString) {
@@ -76,6 +79,8 @@ $(document).ready(function() {
                 $(this).addClass('btnCheck');
                 $(this).siblings('.text').addClass('checked');
                 $(this).parents('article').addClass('articleChecked');
+                $(this).parents('article').removeClass('active');
+
                 todo.subtractRemain();
 
             });
@@ -86,22 +91,38 @@ $(document).ready(function() {
             $('footer').on('click', '.clear', function() {
                 $('article.articleChecked').hide();
             });
-        }
+        },
 
         //showAll function unhides the completed todos
+        showAll: function() {
+            $('footer').on('click', '.show-all', function() {
+                console.log($('.articlechecked'));
+                $('article').css('display', 'block');
+            });
+        },
+        //showActive function hides completed todos
+        showActive: function() {
+            $('footer').on('click', '.show-active', function() {
+                $('article.articleChecked').hide();
+            });
+        },
+        //showCompleted hides active todos and shows completed todos.
+        showCompleted: function() {
+            $('footer').on('click', '.show-completed', function() {
+                $('article').css('display', 'block');
+                $('article.active').hide();
+            });
+        },
 
-        //showActive function
-
+        init: function() {
+            todo.getTodo();
+            todo.deleteTodo();
+            todo.checkOff();
+            todo.clearComplete();
+            todo.showAll();
+            todo.showActive();
+            todo.showCompleted();
+        }
     };
-
-    todo.getTodo();
-    todo.deleteTodo();
-    todo.checkOff();
-    todo.clearComplete();
-
+    todo.init();
 });
-
-// BUGS:
-// make delete button stay in line
-// all the different views stuff
-// finicky css stuff
