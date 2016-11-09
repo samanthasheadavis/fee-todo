@@ -26,12 +26,9 @@ $(document).ready(function() {
         },
 
         // increment "items left" up or down
-
         addRemain: function(string) {
-            // console.log('array length is: ' + todo.todoArray.length + 1);
             var remainingTodo = todo.todoArray.length + 1;
             todo.todoArray.push(string);
-            // console.log("remainingTodo: " + remainingTodo);
             $('.incomplete-items').html(remainingTodo);
         },
 
@@ -44,8 +41,8 @@ $(document).ready(function() {
             }
         },
 
+        //trigger function if todo clicked on, dynamically create editableTodo and populate with todoString.
         editTodo: function(todoString) {
-            //trigger function if todo clicked on, dynamically create editableTodo and populate with todoString.
             var textbox = $('.text');
             var editString = todoString;
             var editableTodo = $("<input>").attr('class', 'newInput').val(editString);
@@ -64,6 +61,7 @@ $(document).ready(function() {
             });
 
         },
+
         // use event delegation to assign click event to delete button
         deleteTodo: function() {
 
@@ -82,11 +80,10 @@ $(document).ready(function() {
                 $(this).parents('article').removeClass('active');
 
                 todo.subtractRemain();
-
             });
         },
 
-        //clearComplete clears all articles (todos) with class 'articlechecked added in checkoff function
+        //clearComplete clears all articles (todos) with class articlechecked added in checkoff function
         clearComplete: function() {
             $('footer').on('click', '.clear', function() {
                 $('article.articleChecked').hide();
